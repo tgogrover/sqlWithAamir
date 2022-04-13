@@ -1,0 +1,17 @@
+{
+  "name": "mysql",
+  "version": "1.0.0",
+  "description": "let's do it ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "tgogrover",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mysql": "^2.18.1"
+  }
+}
