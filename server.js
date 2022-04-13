@@ -2,8 +2,8 @@
 const express=require('express');
 const app=express();
 const api_Signup_Route=require('./routes/signup');
-// const api_Url_Route=require('./routes/reco1');
-var mysql = require('mysql')
+const api_Login_Route=require('./routes/login');
+
 
 
 
@@ -13,31 +13,6 @@ require('dotenv').config();
 
 
 
-var connection = mysql.createConnection({
-	host:process.env.host,
-	user:"root",
-	password:process.env.password,
-	database : process.env.database
-})
-
-// Connecting to database
-connection.connect(function(err) {
-	if(err){
-	console.log("Error in the connection")
-	console.log(err)
-	}
-	else{
-	console.log(`Database Connected`)
-	connection.query(`SHOW DATABASES`,
-	function (err, result) {
-		if(err)
-		console.log(`Error executing the query - ${err}`)
-		else
-		console.log("Result: ",result)
-	})
-	}
-})
-
 
 
 //middlewares
@@ -46,7 +21,7 @@ connection.connect(function(err) {
  
 
  app.use(api_Signup_Route);
-// app.use(api_Url_Route);
+ app.use(api_Login_Route);
 
 
 

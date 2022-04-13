@@ -1,37 +1,15 @@
 var mysql=require('mysql');
 var bcrypt=require('bcryptjs')
 require('dotenv').config()
+var connection=require('../dbConnection')
 
-var connection = mysql.createConnection({
-	host:process.env.host,
-	user:"root",
-	password:process.env.password,
-	database : process.env.database
-})
 
-// Connecting to database
-connection.connect(function(err) {
-	if(err){
-	console.log("Error in the connection")
-	console.log(err)
-	}
-	else{
-	console.log(`Database Connected`)
-	connection.query(`SHOW DATABASES`,
-	function (err, result) {
-		if(err)
-		console.log(`Error executing the query - ${err}`)
-		else
-		console.log("Result: ",result)
-	})
-	}
-})
 
 
 exports.signup=async(req,res)=>{
     const {name,password,email,orgID,type,mobileNo}=req.body
-    const sqlSearch = "select * from `test_organization` where `Email`=? OR `OrgID`=? "
- const search_query = mysql.format(sqlSearch,[email,orgID])
+    const sqlSearch = "select * from `test_organization` where `Email`=? OR `OrgID`=? OR `Mobile NO.`=? "
+ const search_query = mysql.format(sqlSearch,[email,orgID,mobileNo])
  await connection.query (search_query, async (err, result) => {
 	if (err) throw (err)
 	console.log("------> Search Results")
